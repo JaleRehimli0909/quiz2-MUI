@@ -8,9 +8,9 @@
   scrollbar-width: thin;
 }
 
-::-webkit-scrollbar{
-    width: 8px;
-    background-color: grey;
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: grey;
 }
 
 a {

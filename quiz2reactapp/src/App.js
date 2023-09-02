@@ -43,9 +43,20 @@ function App() {
           ></Route>
           <Route
             path="/quiz"
-            element={<Quiz name={name} questions={questions} score={score}  setScore={setScore} setQuestions={setQuestions}/>}
+            element={
+              <Quiz
+                name={name}
+                questions={questions}
+                score={score}
+                setScore={setScore}
+                setQuestions={setQuestions}
+              />
+            }
           ></Route>
-          <Route path="/result" element={<Result />}></Route>
+          <Route
+            path="/result"
+            element={<Result name={name} score={score} />}
+          ></Route>
         </Routes>
       </div>
       <Footer />
