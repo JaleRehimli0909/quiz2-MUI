@@ -1,13 +1,29 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import { Categories } from "../../Data";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import { TextField, MenuItem, Button } from "@mui/material";
 
-const Home = ({name, setName}) => {
+const Home = ({ name, setName, fetchQuestions }) => {
+  const [category, setCategory] = useState("");
+  const [difficulty, setDifficulty] = useState("");
+  const [error, setError] = useState(false);
 
-    const [category, setCategory] = useState("");
-    const [difficulty, setDifficulty] = useState("");
-    console.log(category, difficulty)
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!name || !category || !difficulty) {
+      setError(true);
+      return;
+    } else {
+      setError(false);
+      fetchQuestions(category, difficulty);
+      navigate("/quiz");
+    }
+  };
 
   return (
     <div className="content">
@@ -15,18 +31,19 @@ const Home = ({name, setName}) => {
         <span style={{ fontSize: 30 }}>Quiz Settings</span>
 
         <div className="settings_select">
+          {error && <ErrorMessage>Please Fill all the feilds</ErrorMessage>}
           <TextField
             style={{ marginBottom: 25 }}
             label="Enter Your Name"
             variant="outlined"
-            onChange={(e)=> setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
           />
           <TextField
             select
             label="Select Category"
             variant="outlined"
             value={category}
-            onChange={(e)=> setCategory(e.target.value)}
+            onChange={(e) => setCategory(e.target.value)}
             style={{ marginBottom: 30 }}
           >
             {Categories.map((cat) => (
@@ -40,7 +57,7 @@ const Home = ({name, setName}) => {
             label="Select Difficulity"
             variant="outlined"
             value={difficulty}
-            onChange={(e)=> setDifficulty(e.target.value)}
+            onChange={(e) => setDifficulty(e.target.value)}
             style={{ marginBottom: 30 }}
           >
             <MenuItem key="Easy" value="easy">
@@ -53,8 +70,13 @@ const Home = ({name, setName}) => {
               Hard
             </MenuItem>
           </TextField>
-          <Button variant="contained" color="primary" size="large">
-            Start Quiz 
+          <Button
+            onClick={handleSubmit}
+            variant="contained"
+            color="primary"
+            size="large"
+          >
+            Start Quiz
           </Button>
         </div>
       </div>
