@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Open+Sans:wght@700;800&family=Poppins:wght@100;300;400;500;600&family=Roboto:ital,wght@0,100;0,300;0,400;0,700;1,500&family=Urbanist:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Open+Sans:wght@700;800&family=Poppins:wght@200;300&family=Roboto:ital,wght@0,100;0,300;0,400;0,700;1,500&family=Urbanist:wght@300&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar{
+    width: 8px;
+    background-color: grey;
+}
+
+a {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+.app {
+  min-height: 98.5vh;
+  border: 8px solid #39445a93;
+  margin: 5px;
+  padding: 5px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
